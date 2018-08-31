@@ -1,40 +1,62 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'; // 라이브러리
 
-class Movie extends Component {
 
-	static propTypes = {
-		title : PropTypes.string.isRequired,
-		poster : PropTypes.string.isRequired
-	}
-
-	render() {
-		console.log(this.props);
-		return(
-			
+// 멍청한 함수 만듬 리턴하지 못하고 렌더도 없음
+function Movie({title,poster,genres,synopsis}) {
+	return(
+		<div>
+			<h1>{title}</h1>
 			<div>
-			<h1>hello{this.props.title}</h1>
-			<MoviePoster poster={this.props.poster} />	
+			<MoviePoster poster={poster} title={title}/>	
 			</div>
-		)
-	}
+			<div>
+				{genres.map((genre,index) => <MovieGenres genre={genre} key={index} />)}
+			</div>
+			<div>{synopsis}</div>
+		</div>
+	)
+}
+
+// 멍청한 함수 만듬 리턴하지 못하고 렌더도 없음
+// alt 는 가져온적이 없는데 이걸 넣어야 하는지
+function MoviePoster({poster,title}) {
+	return(
+			<img src={poster} alt={title} title={title} className="MOvie__Poster" />
+	)
 }
 
 
-class MoviePoster extends Component {
-
-	static propTypes = {
-		poster : PropTypes.string.isRequired
-	}
-	
-	render() {
-		return(
-			<div>
-				<img src={this.props.poster} />
-			</div>
-		)
-	}
+function MovieGenres({genre}) {
+	return(
+		<span>{genre}</span>
+	)
 }
+  /********************************************* 
+   * genres 는 array 인데 그것도 모르고 계속 스트링으로 받아서 에러 계속 남
+  *********************************************/	
+Movie.propTypes = {
+	title : PropTypes.string.isRequired,
+	poster : PropTypes.string.isRequired,
+	genres : PropTypes.array.isRequired,
+	synopsis : PropTypes.string.isRequired
+}
+
+// Movie.propTypes = {
+//     title: PropTypes.string.isRequired,
+//     poster: PropTypes.string.isRequired,
+//     genres: PropTypes.array.isRequired,
+//     synopsis: PropTypes.string.isRequired
+// }
+
+MoviePoster.propTypes = {
+	poster : PropTypes.string.isRequired
+}	
+
+MovieGenres.propTypes = {
+	genre : PropTypes.string.isRequired
+}
+
 
 
 export default Movie;
