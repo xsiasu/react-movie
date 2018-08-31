@@ -8,6 +8,7 @@ function Movie({title,poster,genres,synopsis}) {
 		<div>
 			<h1>{title}</h1>
 			<div>
+			
 			<MoviePoster poster={poster} title={title}/>	
 			</div>
 			<div>
@@ -20,6 +21,7 @@ function Movie({title,poster,genres,synopsis}) {
 
 // 멍청한 함수 만듬 리턴하지 못하고 렌더도 없음
 // alt 는 가져온적이 없는데 이걸 넣어야 하는지
+// 여기 agrument 에서 지정한것은 위의 movie 함수의 MoviePoster 의 title={title} 에서 정의 했으므로 사용할수 있다
 function MoviePoster({poster,title}) {
 	return(
 			<img src={poster} alt={title} title={title} className="MOvie__Poster" />
